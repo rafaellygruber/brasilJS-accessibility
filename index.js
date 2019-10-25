@@ -5,11 +5,11 @@ input.addEventListener('keyup', () => {
 	
 	const inputValue = input.value;
 
-	if (inputValue !== "") {
+	if (inputValue) {
 		if (taken_usernames.includes(inputValue.trim())) {
-			setError(input, '&cross; Sorry, this username is taken.');
+			setError(input, 'Desculpe, usuário já utilizado.');
 		} else {
-			setSuccess(input, '&check; You can use this username.');
+			setSuccess(input, 'Você pode usar este usuário.');
 		}
 	} else {
 		document.getElementById('username_feedback').innerHTML = '';
@@ -19,13 +19,13 @@ input.addEventListener('keyup', () => {
 });
 
 function setError(el, msg) {
-	el.parentNode.querySelector('strong').innerHTML = "Error:";
+	el.parentNode.querySelector('strong').innerHTML = "Error: ";
 	el.parentNode.className='error';
 	el.parentNode.querySelector('span').innerHTML = msg;
 }
 
-function setSuccess(el) {
-	el.parentNode.querySelector('strong').innerHTML = "OK:";
+function setSuccess(el, msg) {
+	el.parentNode.querySelector('strong').innerHTML = "OK: ";
 	el.parentNode.className='success';
-	el.parentNode.querySelector('span').innerHTML = "&check;";
+	el.parentNode.querySelector('span').innerHTML = msg;
 }
