@@ -1,31 +1,44 @@
-const taken_usernames = [ 'nicole' ];
-const input = document.getElementById('username');
+const taken_usernames = [ 'nicole', 'NICOLE' ];
+const usernameInput = document.getElementById('username');
+const password2Input = document.getElementById('password2');
 
-input.addEventListener('keyup', () => {
+usernameInput.addEventListener('keyup', () => {
 	
-	const inputValue = input.value;
+	const inputValue = usernameInput.value;
 
 	if (inputValue) {
 		if (taken_usernames.includes(inputValue.trim())) {
-			setError(input, 'Desculpe, usuário já utilizado.');
+			setError(usernameInput, 'Desculpe, usuário já utilizado.', 'username_feedback');
 		} else {
-			setSuccess(input, 'Você pode usar este usuário.');
+			setSuccess(usernameInput, 'Você pode usar este usuário.', 'username_feedback');
 		}
 	} else {
 		document.getElementById('username_feedback').innerHTML = '';
 		document.getElementById('username_feedback').parentNode.className = '';
-		document.querySelector('[for="username"] strong').innerHTML = '';
 	}
 });
 
-function setError(el, msg) {
-	el.parentNode.querySelector('strong').innerHTML = "Error: ";
-	el.parentNode.className='error';
-	el.parentNode.querySelector('span').innerHTML = msg;
+function setError(element, message, feedbackElementId) {
+	element.className='error';
+	document.getElementById(feedbackElementId).innerHTML = message;
 }
 
-function setSuccess(el, msg) {
-	el.parentNode.querySelector('strong').innerHTML = "OK: ";
-	el.parentNode.className='success';
-	el.parentNode.querySelector('span').innerHTML = msg;
+function setSuccess(element, message, feedbackElementId) {
+	element.className='success';
+	document.getElementById(feedbackElementId).innerHTML = message;
+}
+
+function onBlurExpire () {
+	const dateElement = document.getElementById('date');
+	const date = dateElement.value;
+	const feedback = document.getElementById('dateDescription');
+	const dateRegex = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$', 'g');
+
+	if(dateRegex.test(date)) {
+		feedback.innerText = 'Formato válido'
+		dateElement.className ='success';
+	} else {
+		feedback.innerText = 'Formato inválido'
+		dateElement.className ='error';
+	}
 }

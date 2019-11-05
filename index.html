@@ -11,19 +11,19 @@
     <title>BrazilJS - Acessibilidade</title>
 
     <style>
-        .error {
+        /* .error {
             color: #900;
         }
 
         .success {
             color: #007a00;
-        }
+        } */
 
-        .error input {
+        .error {
             border: 3px solid #900;
         }
 
-        .success input {
+        .success {
             border: 3px solid #007a00;
         }
     </style>
@@ -34,19 +34,19 @@
         <fieldset>
             <legend>Cadastro de usuário</legend>
 
-            <strong></strong><label for="username">Usuário:</label>
+            <label for="username">Usuário:</label>
             <input type="text" name="username" id="username" required>
-            <span id="username_feedback" aria-live="polite"></span>
-            
-            <br>
+            <span id="username_feedback" aria-live="assertive"></span>
+        </fieldset>
 
-            <label for="password">Senha:</label>
-            <input type="password" name="password" id="password" required>
+        <br>
 
-            <br>
-
-            <label for="password2">Repita a senha:</label>
-            <input type="password" name="password2" id="password2" required>
+        <fieldset>
+            <div>
+                <label for="date">Data:</label>
+                <input type="text" name="date" id="date" value="03.2015" onblur="onBlurExpire()" aria-describedby="dateDescription">
+                <span id="dateDescription" aria-live="assertive"></span>
+            </div>
         </fieldset>
     </form>
 
