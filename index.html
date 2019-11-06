@@ -1,5 +1,6 @@
 <!-- 
     https://www.w3.org/WAI/tutorials/forms/notifications/
+    https://ireade.github.io/accessible-modal-dialog/
  -->
 <!DOCTYPE html>
 <html lang="pt">
@@ -9,16 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BrazilJS - Acessibilidade</title>
+    <link rel="stylesheet" href="modal.css">
+
+    <script type="module">
+        import { Dialog } from './modal.js';
+
+        var navDialogEl = document.querySelector('.dialog');
+        var dialogOverlay = document.querySelector('.dialog-overlay');
+
+        var myDialog = new Dialog(navDialogEl, dialogOverlay);
+        myDialog.addEventListeners('.open-dialog', '.close-dialog');
+    </script>
 
     <style>
-        /* .error {
-            color: #900;
-        }
-
-        .success {
-            color: #007a00;
-        } */
-
         .error {
             border: 3px solid #900;
         }
@@ -30,6 +34,8 @@
 </head>
 
 <body>
+    <h1>Exemplos Acessibilidade com javascript</h1>
+    <h2>Formulário</h2>
     <form action="">
         <fieldset>
             <legend>Cadastro de usuário</legend>
@@ -37,21 +43,38 @@
             <label for="username">Usuário:</label>
             <input type="text" name="username" id="username" required>
             <span id="username_feedback" aria-live="assertive"></span>
-        </fieldset>
 
-        <br>
+            <br><br>
 
-        <fieldset>
             <div>
                 <label for="date">Data:</label>
-                <input type="text" name="date" id="date" value="03.2015" onblur="onBlurExpire()" aria-describedby="dateDescription">
+                <input type="text" name="date" id="date" value="03.2015" onblur="onBlurExpire()"
+                    aria-describedby="dateDescription">
                 <span id="dateDescription" aria-live="assertive"></span>
             </div>
         </fieldset>
     </form>
 
+    <!-- ---------------------- MODAL -------------------- -->
+    <h2>Modal</h2>
+    <button type="button" class="open-dialog"> Abrir modal </button>
+
+    <div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+        <h1 id="dialog-title">Receber notificações</h1>
+        <p id="dialog-description" class="sr-only">receba por email as novas atualizações</p>
+
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+
+        <button type="button" class="close-dialog">Salvar</button>
+        <button type="button" aria-label="Fechar" class="close-dialog">X</button>
+    </div>
+    <div class="dialog-overlay" tabindex="-1"></div>
+
 </body>
 
 <script src="index.js" type="text/javascript"></script>
+<script src="modal.js"></script>
 
 </html>
