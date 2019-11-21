@@ -29,7 +29,7 @@ export class Dialog {
       this._handleKeyDown(e);
     });
 
-    this.overlayElement.addEventListener('click', function () {
+    this.overlayElement.addEventListener('click', () => {
       this.close();
     });
 
