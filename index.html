@@ -2,7 +2,7 @@
     Fonte:
     https://www.w3.org/WAI/tutorials/forms/notifications/
     https://ireade.github.io/accessible-modal-dialog/
- -->
+-->
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -11,8 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BrazilJS - Acessibilidade</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="input.css">
     <link rel="stylesheet" href="dialog.css">
+    <link rel="stylesheet" href="style.css">
 
     <script type="module">
         import { Dialog } from './dialog.js';
@@ -27,22 +29,21 @@
 </head>
 
 <body>
-    <h1>Exemplos Acessibilidade com javascript</h1>
+    <h1>Melhorando a acessibilidade com javascript</h1>
     <h2>Formulário</h2>
     <form action="">
         <fieldset>
             <legend>Cadastro de usuário</legend>
 
             <label for="username">Usuário:</label>
-            <input type="text" name="username" id="username" required>
+            <input type="text" autocomplete="off" name="username" id="username" required>
             <span id="username_feedback" aria-live="assertive"></span>
 
             <br><br>
 
             <div>
                 <label for="date">Data:</label>
-                <input type="text" name="date" id="date" value="03.2015" onblur="onBlurExpire()"
-                    aria-describedby="dateDescription">
+                <input type="text" name="date" id="date" autocomplete="off" aria-describedby="dateDescription">
                 <span id="dateDescription" aria-live="assertive"></span>
             </div>
         </fieldset>

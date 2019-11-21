@@ -1,6 +1,6 @@
-const taken_usernames = [ 'nicole', 'NICOLE' ];
+const taken_usernames = [ 'aline', 'Aline' ];
 const usernameInput = document.getElementById('username');
-const password2Input = document.getElementById('password2');
+const dateInput = document.getElementById('date');
 
 usernameInput.addEventListener('keyup', () => {
 	
@@ -18,6 +18,26 @@ usernameInput.addEventListener('keyup', () => {
 	}
 });
 
+dateInput.addEventListener('keyup', () => {
+	
+	const date = dateInput.value;
+
+	if(date) {
+		const feedback = document.getElementById('dateDescription');
+		const dateRegex = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$', 'g');
+
+		if(dateRegex.test(date)) {
+			feedback.innerText = 'Formato válido'
+			dateInput.className ='success';
+		} else {
+			feedback.innerText = 'Formato inválido'
+			dateInput.className ='error';
+		}
+
+	}
+});
+
+
 function setError(element, message, feedbackElementId) {
 	element.className='error';
 	document.getElementById(feedbackElementId).innerHTML = message;
@@ -26,19 +46,4 @@ function setError(element, message, feedbackElementId) {
 function setSuccess(element, message, feedbackElementId) {
 	element.className='success';
 	document.getElementById(feedbackElementId).innerHTML = message;
-}
-
-function onBlurExpire () {
-	const dateElement = document.getElementById('date');
-	const date = dateElement.value;
-	const feedback = document.getElementById('dateDescription');
-	const dateRegex = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$', 'g');
-
-	if(dateRegex.test(date)) {
-		feedback.innerText = 'Formato válido'
-		dateElement.className ='success';
-	} else {
-		feedback.innerText = 'Formato inválido'
-		dateElement.className ='error';
-	}
 }
